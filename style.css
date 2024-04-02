@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.left-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 5px;
+    background: #74d398;
+    border-radius: 5px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-game {
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.new-game select {
+    background: #5db2dd;
+    color: #FFF;
+    padding: 2px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
