@@ -76,7 +76,7 @@ button hover {
 }
 
 .stage {
-    height: 100px;
+    height: 180px;
     background: dimgray;
     display: flex;
     justify-content: space-around;
@@ -105,7 +105,7 @@ button hover {
 }
 
 .plate {
-    width: 115px;
+    width: 120px;
     height: 10px;
     background: brown;
     border-radius: 10px;
