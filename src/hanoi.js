@@ -5,9 +5,9 @@ const getHanoiSolutions = (nDiscs) => {
 
     // recursive function to move the tower of discs from origin to destiny using aux as an auxiliary peg
     
-    const hanoi =(n, origin, destiny, aux) => {
+    const hanoi = (n, origin, destiny, aux) => {
         // Base case: If there's only one disc, move it directly to destiny
-        solutions.push( {disc: n, origin, destiny })
+        solutions.push({ disc: n, origin, destiny })
         return;
     }
 
@@ -15,7 +15,7 @@ const getHanoiSolutions = (nDiscs) => {
     hanoi(n - 1, origin, aux, destiny)
 
     // Move the nth disc from origin to destiny
-    solutions.push( {disc: n, origin, destiny })
+    solutions.push({ disc: n, origin, destiny })
 
     // Move n - 1 discs from aux to destiny, using origin as an auxiliary peg
     hanoi(n - 1, aux, destiny, origin)

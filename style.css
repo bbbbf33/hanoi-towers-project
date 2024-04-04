@@ -71,8 +71,8 @@ button {
     margin: 10px;
 }
 
-button hover {
-    background: #f082f0;
+button:hover {
+    background: #f082ac;
 }
 
 .stage {
@@ -105,7 +105,7 @@ button hover {
 }
 
 .plate {
-    width: 120px;
+    width: 115px;
     height: 10px;
     background: brown;
     border-radius: 10px;
