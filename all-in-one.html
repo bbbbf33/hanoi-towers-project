@@ -1,205 +1,199 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset='utf-8'>
-      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-      <title>Hanoi</title>
-      <meta name='viewport' content='width=device-width, initial-scale=1'>
-      <style>
-         * {
-         box-sizing: border-box;
-         }
+<head>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<title>Turnurile din Hanoi</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<style>
 
-         body {
-         font-family: 'Courier New', Courier, monospace;
-         }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-         .container {
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         gap: 10px;
-         }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+}
 
-         .left-sidebar {
-         display: flex;
-         flex-direction: column;
-         width: 200px;
-         padding: 5px;
-         background: #74d398;
-         border-radius: 5px;
-         justify-content: space-between;
-         align-items: center;
-         }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+}
 
-         .new-game {
-         border: 1px solid #FFF;
-         border-radius: 5px;
-         padding: 10px;
-         margin: 10px;
-         gap: 5px;
-         display: flex;
-         flex-direction: column;
-         justify-content: space-between;
-         }
+.left-sidebar {
+    background-color: #393e46;
+    color: #eeeeee;
+    padding: 20px;
+    border-radius: 10px;
+}
 
-         .new-game select {
-         background: #5db2dd;
-         color: #FFF;
-         padding: 2px;
-         border: none;
-         outline: none;
-         border-radius: 5px;
-         }
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
 
-         .speed {
-         border: 1px solid #FFF;
-         border-radius: 5px;
-         padding: 5px;
-         }
+.settings {
+    margin-bottom: 20px;
+}
 
-         .speed p {
-         font-size: 12px;
-         font-weight: light;
-         color: floralwhite;
-         }
+.setting {
+    margin-bottom: 10px;
+}
 
-         #speedRange {
-         width: 100%;
-         height: 3px;
-         }
+label {
+    display: block;
+    margin-bottom: 5px;
+}
 
-         button {
-         background: #a18492;
-         border-radius: 9px;
-         border-style: none;
-         color: #FFF;
-         cursor: pointer;
-         padding: 5px 16px;
-         margin: 10px;
-         }
+select, input[type="range"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    background-color: #222831;
+    color: #eeeeee;
+}
 
-         button:hover {
-         background: #f082ac;
-         }
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00adb5;
+    color: #eeeeee;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-         .stage {
-         height: 180px;
-         background: dimgray;
-         display: flex;
-         justify-content: space-around;
-         align-items: center;
-         border-radius: 5px;
-         gap: 10px;
-         padding: 10px;
-         }
+button:hover {
+    background-color: #393e46;
+}
 
-         .tower {
-         width: 100px;
-         height: 160px;
-         background: beige;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         justify-content: flex-end;
-         }
+.stage {
+    height: 180px;
+    background: #222831;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    gap: 10px;
+    padding: 10px;
+    margin-left: 20px;
+}
 
-         .stem {
-         width: 7px;
-         height: 140px;
-         background: #000;
-         position: absolute;
-         border-radius: 5px;
-         }
+.tower {
+    width: 100px;
+    height: 160px;
+    background: #393e46;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
 
-         .plate {
-         width: 115px;
-         height: 10px;
-         background: brown;
-         border-radius: 10px;
-         z-index: 1;
-         }
+.stem {
+    width: 7px;
+    height: 140px;
+    background: #eeeeee;
+    position: absolute;
+    border-radius: 5px;
+}
 
-         .disc {
-         height: 18px;
-         border-radius: 3px;
-         z-index: 1;
-         }
+.plate {
+    width: 100px;
+    height: 10px;
+    background: #bcaaa4;
+    z-index: 1;
+}
 
-         .is-dragging {
-         opacity: 0.3;
-         }
-      </style>
-   </head>
-   <body>
-      <div class="container">
-         <div class="left-sidebar">
-            <div class="new-game">
-               <select name="discs" id="discSelect">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3" selected>3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-               </select>
-               <button id="newGameBtn">New Game</button>
+.disc {
+    height: 18px;
+    border-radius: 3px;
+    background: #eeeeee;
+    z-index: 1;
+}
+
+.is-dragging {
+    opacity: 0.3;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-sidebar">
+            <h1 class="title">Turnurile din Hanoi</h1>
+            <div class="settings">
+                <div class="setting">
+                    <label for="discSelect">Numărul discurilor:</label>
+                    <select name="discs" id="discSelect">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+                <button id="newGameBtn"><b>Joc nou</b></button>
             </div>
             <div class="speed">
-               <p>Speed</p>
-               <input type="range" id="speedRange" step="1" max="100"
-                  value="100">
+                <label for="speedRange">Viteză:</label>
+                <input type="range" id="speedRange" step="1" max="100" value="100">
             </div>
-            <div class="buttons">
-               <button id="btnSolve">Solve</button>
-            </div>
-         </div>
-         <div class="stage">
+            <button id="btnSolve"><b>Rezolvă</b></button>
+        </div>
+        <div class="stage">
             <div class="tower">
-               <div class="stem"></div>
-               <div class="plate"></div>
-            </div>
-            <div class="tower">
-               <div class="stem"></div>
-               <div class="plate"></div>
+                <div class="base"></div>
+                <div class="disc" id="disc1"></div>
+                <div class="disc" id="disc2"></div>
+                <div class="disc" id="disc3"></div>
             </div>
             <div class="tower">
-               <div class="stem"></div>
-               <div class="plate"></div>
+                <div class="base"></div>
             </div>
-         </div>
-      </div>
+            <div class="tower">
+                <div class="base"></div>
+            </div>
+        </div>
+    </div>
       <script>
-         // Combined JavaScript code
+         // Rezolvarea problemei Turnurilor din Hanoi
          
-         // Function to simulate sleep
+         // Funcție pentru așteptarea unui anumit timp
          const sleep = (ms) => {
          return new Promise(resolve => setTimeout(resolve, ms))
          }
          
-         // Function to solve the Hanoi tower and get the sequences of moves
+         // Funcție pentru a obține soluțiile problemei Turnurilor din Hanoi
          const getHanoiSolutions = (nDiscs) => {
          const solutions = []
          
-         // Recursive function to move the tower of discs from origin to destiny using aux as an auxiliary peg
+         // Funcție recursivă pentru rezolvarea problemei Turnurilor din Hanoi
          const hanoi = (n, origin, destiny, aux) => {
           if (n == 1) {
-              // Base case: If there's only one disc, move it directly to destiny
+              // Cazul de bază: mută discul de pe origin pe destiny
               solutions.push({ disc: n, origin, destiny })
               return;
           }
          
-          // Move n - 1 discs from origin to aux, using destiny as an auxiliary peg
+          // Mută n - 1 discuri de pe origin pe aux, folosind destiny ca și stâlp auxiliar
           hanoi(n - 1, origin, aux, destiny)
          
-          // Move the nth disc from origin to destiny
+          // Mută discul n de pe origin pe destiny
           solutions.push({ disc: n, origin, destiny })
          
-          // Move n - 1 discs from aux to destiny, using origin as an auxiliary peg
+          // Mută n - 1 discuri de pe aux pe destiny, folosind origin ca și stâlp auxiliar
           hanoi(n - 1, aux, destiny, origin)
          }
          
-         // Start the recursive process with the initial call to the hanoi function
+         // Începe rezolvarea problemei Turnurilor din Hanoi prin funcția recursivă
          hanoi(nDiscs, 0, 2, 1)
          
          return solutions;
@@ -207,35 +201,35 @@
          
          const towers = document.querySelectorAll('.tower')
          
-         // initialize towerContent as an array of arrays representing the discs on each tower
+         // inițializarea conținutului turnurilor
          let towerContent = [[], [], []]
          
-         // initialize the size of the discs
+         // inițializarea dimensiunii turnurilor
          let size = 3
          
          let discs
          
-         // sleep time and speed
+         // timpul de așteptare între mutări și viteza de execuție
          const sleepTime = 300
          let speed = 100
          
-         // colors of the discs
-         const DISC_COLORS = ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51', '#3a86ff']
+         // culorile discurilor
+         const DISC_COLORS = ['#FF6B6B', '#FFE66D', '#9BF6FF', '#A0A0A0', '#5D737E', '#A6E3E9'];
          
-         // initial width of the discs
+         // lățimea inițială a discului
          const startWidth = 90
          
-         // html elements
+         // elemente html
          const newGameBtn = document.getElementById('newGameBtn')
          const discSelect = document.getElementById('discSelect')
          const speedRange = document.getElementById('speedRange')
          const btnSolve = document.getElementById('btnSolve')
          
-         // variables to track the current and origin tower during draggind
+         // variabile pentru turnul de origine și turnul curent
          let currentTower
          let originTower
          
-         // function to build the towers with stems and plates
+         // funcție pentru construirea turnurilor
          const buildTowers = (towers) => {
          towers.forEach(tower => {
          const stem = document.createElement('div')
@@ -248,17 +242,17 @@
          })
          }
          
-         // start the game
+         // începe jocul
          start()
          
          function start() {
-         // reset the towerContent array
+         // resetarea conținutului turnurilor
          towerContent = [[], [], []]
          
-         // build the towers with stems and plates
+         // construirea turnurilor
          buildTowers(towers)
          
-         // create discs and place them on the first tower
+         // crearea discurilor
          for (let i = 0; i < size; i++) {
          let tower = document.createElement('div')
          tower.classList.add('disc')
@@ -268,19 +262,19 @@
          towerContent[0].push(tower)
          }
          
-         // add the disc to the first tower in the DOM
+         // adăugarea discurilor pe primul turn
          towerContent[0].forEach(t => {
          towers[0].innerHTML = t.outerHTML + towers[0].innerHTML
          })
          
-         // add event listeners for dragenter and dragover to each tower
+         // adăugarea evenimentelor pentru turnuri și discuri
          for (let i = 0; i < towers.length; i++) {
          towers[i].classList.add('t' + i)
          towers[i].addEventListener('dragenter', dragenter)
          towers[i].addEventListener('dragover', dragover)
          }
          
-         // get references to all discs
+         // adăugarea evenimentelor pentru discuri
          discs = document.querySelectorAll('.disc')
          
          discs.forEach(disc => {
@@ -289,25 +283,24 @@
          })
          }
          
-         // event handler for dragenter
+         // evenimentul de tragere peste un turn
          function dragenter() {
          if (!originTower) {
          originTower = this
          }
          }
          
-         // event handler for dragover
+         // evenimentul de tragere peste un turn
          function dragover() {
          currentTower = this
          }
          
-         // event handler for dragstart
+         // evenimentul de tragere a unui disc
          function dragstart() {
          this.classList.add('is-dragging')
          }
          
-         // event handler for dragend
-         
+         // evenimentul de sfârșit al tragerii unui disc
          function dragend() {
          let originTowerIndex = originTower.classList[1][1]
          let currentTowerIndex = currentTower.classList[1][1]
@@ -319,7 +312,7 @@
          originTowerIndex = undefined
          }
          
-         // Move the disc from the origin tower to the current tower
+         // Mutarea discului de pe un turn pe altul
          function moveTower(originTowerIndex, currentTowerIndex, disc) {
          if (isDroppable(originTowerIndex, currentTowerIndex, disc)) {
          towerContent[currentTowerIndex].push(towerContent[originTowerIndex].pop())
@@ -328,7 +321,7 @@
          }
          }
          
-         // check if the disc can be dropped on the current tower
+         // Verificare dacă discul poate fi mutat pe un alt turn
          function isDroppable(originTowerIndex, currentTowerIndex, disc) {
          let top = isOnTop(originTowerIndex, disc)
          let topDiscIsLess = isDiscLessThan(currentTowerIndex, disc)
@@ -336,13 +329,13 @@
          return top && topDiscIsLess
          }
          
-         // check if the disc is on top of the origin tower
+         // Verificare dacă discul este pe vârful turnului
          function isOnTop(originTowerIndex, disc) {
          let size = towerContent[originTowerIndex].length
          return disc.style.width === towerContent[originTowerIndex][size - 1].style.width
          }
          
-         // check if the disc is smaller than the top disc of the current tower
+         // Verifica dacă discul este mai mic decât discul de pe turnul destinatie
          function isDiscLessThan(currentTowerIndex, disc) {
          let size = towerContent[currentTowerIndex].length
          
@@ -356,7 +349,7 @@
          }
          }
          
-         // Move the top disc from the origin tower to the destiny tower
+         // Mutarea discului de pe un turn pe altul
          function moveTopDisc(originTowerIndex, destinyTowerIndex) {
          originTower = towers[originTowerIndex]
          currentTower = towers[destinyTowerIndex]
@@ -364,7 +357,7 @@
          moveTower(originTowerIndex, destinyTowerIndex, disc)
          }
          
-         // get the top disc from the specified tower
+         // Obținerea discului de pe vârful turnului
          function getTopDisc(towerIndex) {
          let size = towerContent[towerIndex].length
          
@@ -378,7 +371,7 @@
          return discs[indexDisc]
          }
          
-         // animate the movements of the solution
+         // Animarea mutărilor
          async function moves(movements) {
          for (let i = 0; i < movements.length; i++) {
          const element = movements[i];
@@ -387,22 +380,22 @@
          }
          }
          
-         // Game class
+         // Clasa pentru joc
          class Game {
-         // method to start a new game
+         // metoda pentru un joc nou
          newGame = () => {
-         // Event listner for the speed range input
+         // event listener pentru schimbarea vitezei
          speedRange.addEventListener('input', event => {
          speed = event.target.value
          })
          
-         // event listener for the new game button click
+         // event listener pentru click pe butonul de joc nou
          newGameBtn.addEventListener('click', () => {
          size = discSelect.selectedIndex + 1
          start()
          })
          
-         // event handler for the solve button click
+         //event listener pentru click pe butonul de rezolvare
          btnSolve.onclick = function() {
          const movements = getHanoiSolutions(size)
          moves(movements)
